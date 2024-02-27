@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/main.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <title>GDT | Регистрация</title>
+</head>
+<body>
+    <div class="page">
+        <form action="#" method="POST" id="registrationForm">
+            <h1>Регистрация</h1>
+            <label for="username"><b>Имя пользователя</b><br></label>
+            <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+            <p></p>
+            <label for="login"><b>Логин</b><br>Допускаются только английские буквы, цифры, точки, _ и -<br></label>
+            <input type="text" id="login" name="login" placeholder="Логин" required pattern="[a-zA-Z0-9\-\_\.]" maxlength="32">
+            <p></p>
+            <label for="password"><b>Пароль</b><br></label>
+            <input type="password" id="password" name="password" placeholder="Пароль" required>
+            <p></p>
+            <label for="password1"><b>Повторите пароль</b><br></label>
+            <input type="password" id="password1" name="password" placeholder="Пароль. Снова" required>
+            <p></p>
+            <input type="submit" name="submit" id="submit" title="Зарегистрироваться">
+        </form>
+        <div id="message"></div>
+        <script src="/static/registerForm.js"></script>
+    </div>
+</body>
+</html>
