@@ -20,7 +20,9 @@ async def read_root(request: Request):
 # FIXME: потенциально небезопасно!!!!!
 @app.get("/items/{item_id}")
 async def read_item(request: Request, item_id: int):
+    # pylint: disable=protected-access
     item = userdata.database.__db.find_one({"_id": item_id})
+    # pylint: enable=protected-access
     return templates.TemplateResponse("item.html", {"request": request, "item": item})
 
 @app.get("/register")

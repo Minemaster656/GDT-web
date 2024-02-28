@@ -1,7 +1,6 @@
 from fastapi import Request, HTTPException
-from starlette.responses import JSONResponse
 
-from . import database
+from userdata import database
 
 async def register_user(request: Request):
     data = await request.json()
@@ -25,5 +24,4 @@ async def register_user(request: Request):
 
     if registration_successful:
         return {"success": True, "message": "Пользователь успешно зарегистрирован"}
-    else:
-        return {"success": False, "message": message}
+    return {"success": False, "message": message}
