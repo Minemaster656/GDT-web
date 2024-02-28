@@ -1,4 +1,5 @@
 import hashlib
+import bcrypt
 
 
 def hash_SHA3_str(input_string)->str:
@@ -11,3 +12,16 @@ def hash_SHA3_str(input_string)->str:
     return hashed_string
 
 
+def hash_password(password: str) -> str:
+    """
+    Hash and salt password string with most robust library i know - BCrypt
+    """
+    # FIXME: майн, заюзай чекпв из бкрипта и замени второй аргумент на bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode(), b"$2b$12$RTA7FMF2cU4l8XyqHw1bKe").decode()
+
+def check_password(password: str, hashed: str) -> bool:
+    """
+    Check if password and hash match.
+    No, you can't just do hash(pass) == hashed
+    """
+    return bcrypt.checkpw(password.encode(), hashed.encode())
