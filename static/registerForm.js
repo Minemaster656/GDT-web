@@ -15,8 +15,7 @@ $(document).ready(function() {
         var formData = {
             username: username,
             login: login,
-            password: password,
-            password1: password1
+            password: password
         };
 
         if (Object.values(formData).every(val => val.trim() !== '')) {

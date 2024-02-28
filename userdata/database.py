@@ -1,13 +1,12 @@
 import enum
-
 from pymongo import MongoClient
 
-import Utils
-from private import Core
+import config
+from userdata import passwd
 
 
-client = MongoClient(Core.DB_ADDRESS)
-db = client[Core.DB_NAME]
+__client = MongoClient(config.DB_ADDRESS)
+__db = __client[config.DB_NAME]
 
 class Schemes(enum.Enum):
     blank = 0
@@ -45,18 +44,28 @@ def schema(document, scheme):
             document[k] = fields[k]
             fields_check[k] = True
     return document
-def addUser(username, login, password):
+
+def find_one(collection, *args, **kwargs):
+    return __db[collection].find_one(*args, **kwargs)
+
+def find_user(udata):
+    return find_one("users", udata)
+
+def add_user(username, login, password):
     """
     Adds a new user to the database.
 
     Args:
         username (str): The username of the new user.
         login (str): The login of the new user.
-        password (str): The password of the new user. HASHED!
+        password (str): The password of the new user.
 
     Returns:
         None
     """
-    doc = db.users.find_one({"login": login})
-    if not doc:
-        db.users.insert_one(schema({"username": username, "login": login, "password": password}, Schemes.user))
+    db.users.insert_one(
+        schema(
+            {"username": username, "login": login, "password": passwd.hash_password(password)},
+            Schemes.user
+            )
+        )
