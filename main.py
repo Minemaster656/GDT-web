@@ -12,6 +12,17 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+@app.middleware("http")
+async def validate_request(request: Request, call_next):
+    if request.url.path.startswith("/API"):
+        origin = request.headers.get("origin")
+        user_agent = request.headers.get("user-agent")
+
+        if origin not in config.DOMAINS:
+            raise HTTPException(status_code=403)
+
+    response = await call_next(request)
+    return response
 
 @app.get("/")
 async def read_root(request: Request):
