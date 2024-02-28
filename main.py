@@ -1,7 +1,6 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from starlette.responses import JSONResponse
 
 import config
 import userdata
@@ -21,7 +20,7 @@ async def read_root(request: Request):
 # FIXME: потенциально небезопасно!!!!!
 @app.get("/items/{item_id}")
 async def read_item(request: Request, item_id: int):
-    item = DB.db.find_one({"_id": item_id})
+    item = userdata.database.__db.find_one({"_id": item_id})
     return templates.TemplateResponse("item.html", {"request": request, "item": item})
 
 @app.get("/register")

@@ -9,8 +9,8 @@ __client = MongoClient(config.DB_ADDRESS)
 __db = __client[config.DB_NAME]
 
 class Schemes(enum.Enum):
-    blank = 0
-    user = 1
+    BLANK = 0
+    USER = 1
 
 
 def schema(document, scheme):
@@ -34,13 +34,13 @@ def schema(document, scheme):
     fields_check = {}
     if not document:
         document = fields
-    for k in fields.keys():
+    for k in fields:
         fields_check[k] = False
-    for k in document.keys():
-        if k in fields.keys():
+    for k in document:
+        if k in fields:
             fields_check[k] = True
-    for k in fields_check:
-        if not fields_check[k]:
+    for k, v in fields_check.items():
+        if not v:
             document[k] = fields[k]
             fields_check[k] = True
     return document
@@ -63,9 +63,9 @@ def add_user(username, login, password):
     Returns:
         None
     """
-    db.users.insert_one(
+    __db.users.insert_one(
         schema(
             {"username": username, "login": login, "password": passwd.hash_password(password)},
-            Schemes.user
+            Schemes.USER
             )
         )

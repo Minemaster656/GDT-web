@@ -1,3 +1,6 @@
+from fastapi import Request, HTTPException
+from starlette.responses import JSONResponse
+
 from . import database
 
 async def register_user(request: Request):
