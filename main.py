@@ -8,6 +8,7 @@ from starlette.status import HTTP_418_IM_A_TEAPOT, HTTP_451_UNAVAILABLE_FOR_LEGA
 
 import DB
 import Data
+import TEMPLATES
 import Utils
 
 app = FastAPI()
@@ -31,7 +32,7 @@ async def validate_request(request: Request, call_next):
 
 @app.get("/")
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse("index.html", {"request": request, "header":TEMPLATES.HEADER})
 
 @app.get("/items/{item_id}")
 async def read_item(request: Request, item_id: int):

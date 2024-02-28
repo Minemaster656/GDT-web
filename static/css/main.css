@@ -131,7 +131,7 @@ nav ul li a {
     color: azure;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 35px 20px 35px 20px;
+    padding: 35px 20px;
     text-decoration: none;
 }
 
@@ -142,14 +142,14 @@ nav li ul a:hover {
 
 nav ul li ul{
     display: block;
-    background-color: #ffffff84;
+    background-color: rgba(46, 46, 46, 0.781);
     min-width: 200px;
     position: absolute;
     margin-top: 1px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     opacity:0;
     visibility: hidden;
-    transition: 0.5s;
+    transition: 0.35s;
 }
 nav ul li:hover ul{
     opacity: 1;

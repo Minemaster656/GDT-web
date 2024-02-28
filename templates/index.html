@@ -10,57 +10,12 @@
 
 <body>
     <div class="page">
-        <div class="header">
-            <a href="/"><img src="/static/assets/img/logo.png" alt="Логотип сайта" id="logo"></a>
-            <nav>
-                <ul>
-                    <li><a href="/">Главная</a></li>
-                    <li><a href="/about">О нас</a>
-                        <ul>
-                            <a href="/about/projects">Проекты</a>
-                        </ul>
-                        <ul>
-                            <a href="/about/employee">Сотрудники</a>
-                        </ul>
-                    </li>
-                    <li><a href="/docs">Документация</a>
-                        <ul>
-                            <a href="/docs/API/ATK">ATK API</a>
-                        </ul>
-                        <ul>
-                            <a href="/docs/API/DB">API базы данных</a>
-                        </ul>
-                        <ul>
-                            <a href="/docs/MnL">MnL 1.0 Python edition</a>
-                        </ul>
-                        <ul>
-                            <a href="/docs/nerdcord_MnL">Nerdcord MnL</a>
-                        </ul>
-                        <!-- TODO: сказать гугру сделать документацию -->
-                    </li>
-                    <li><a href="/profile">Аккаунт и настройки</a>
-                        <ul>
-                            <a href="/register">Регистрация и вход</a>
-                        </ul>
-                        <ul>
-                            <a href="/profile">Профиль</a>
-                        </ul>
-                        <ul>
-                            <a href="/settings">Настройки</a>
-                        </ul>
-                    </li>
-                    <!-- TODO: !!!БОЛЬШЕ РАЗДЕЛОВ БОГУ РАЗДЕЛОВ!!! -->
-                    <!-- <li><a href="#">Контакты</a>
-                        <ul>
-                        </ul>
-                    </li> -->
-                </ul>
-            </nav>
-        </div>
+        {{ header | safe }}
         <section>
-            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque magni aliquam fugit. Asperiores iure
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque magni aliquam fugit. Asperiores iure
                 laudantium neque reprehenderit labore, molestias expedita non, nostrum, dolor perspiciatis aperiam vitae
-                debitis illum eaque consequuntur.</p> -->
+                debitis illum eaque consequuntur.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus quos perspiciatis sequi impedit. Delectus debitis, laudantium tenetur iure perspiciatis amet commodi ipsam! Adipisci eum quaerat dolores, deleniti odio magni. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non pharetra lectus. Proin nec ligula tortor. Aliquam erat volutpat. Proin et nibh consectetur, facilisis mauris ut, fermentum eros. Pellentesque quis posuere enim. Aenean eu magna mattis, egestas diam eget, volutpat tortor. Praesent cursus ligula quis condimentum congue. Mauris volutpat tristique orci eu viverra. Mauris nec justo posuere ex porta ullamcorper. Donec aliquet, arcu imperdiet mollis consectetur, augue mi lacinia ex, et ultricies ipsum purus sed odio. Maecenas imperdiet eleifend porta. Proin semper posuere leo, sit amet luctus nisl venenatis a. Sed id luctus nisi. Nam ullamcorper, tortor euismod luctus rutrum, ligula nulla dictum lectus, vel scelerisque ex tortor nec enim. Donec pretium malesuada erat. Vivamus tincidunt varius varius. Donec molestie ex sit amet odio vulputate hendrerit. Cras ac porttitor elit, quis malesuada ante. Curabitur molestie sagittis est at eleifend. Sed vel justo est. In enim velit, luctus a viverra in, aliquam ut neque. Praesent mi ex, convallis id ligula ut, posuere sollicitudin risus. Mauris vestibulum nec turpis nec rhoncus. Nullam vel auctor orci, nec imperdiet est. Etiam augue ligula, finibus vel convallis fermentum, commodo id erat. Nam scelerisque ut enim at lobortis. Duis a libero et purus elementum congue. Donec tincidunt lobortis urna. Suspendisse pharetra ac metus id pellentesque. Nulla facilisi. Nullam vel pulvinar metus, eget malesuada purus. Nam nec tellus efficitur augue viverra bibendum quis sed turpis. Fusce egestas venenatis diam mollis bibendum. Phasellus diam tortor, semper sit amet leo quis, pretium lobortis est. Nulla id tortor tellus. Fusce pulvinar dignissim mi. Quisque commodo in mi eget pretium. Cras ut elit ut felis posuere mollis quis nec libero. Sed id urna vitae dolor facilisis imperdiet. Cras malesuada justo vitae accumsan cursus. Donec eu ligula scelerisque, mollis justo sit amet, varius purus. Phasellus et magna iaculis est pellentesque accumsan non id mi. Donec ultrices risus et ligula accumsan, ac molestie ex ultricies. Proin quis mi in magna pharetra porttitor. Nam at massa sit amet mi imperdiet lobortis. Praesent lobortis eros lacinia metus interdum pellentesque. Etiam a lobortis risus. Donec efficitur justo quis odio cursus suscipit. Suspendisse imperdiet sem volutpat, euismod mi sit amet, pellentesque tortor. Sed nunc sapien, tincidunt non nisi non, suscipit mollis odio. Nullam ac nisl consequat, scelerisque augue id, sollicitudin felis. Curabitur ac ultrices erat. Etiam consequat eros non ipsum vestibulum euismod. Pellentesque dapibus aliquet mi at lobortis. Quisque ac ante eros. Donec est velit, condimentum eu nibh blandit, mattis ullamcorper est. Phasellus ac odio eget mauris fringilla feugiat. Maecenas eleifend ut risus a iaculis. Cras fringilla congue erat non consequat. Aliquam aliquam neque in diam molestie pulvinar quis eget nulla. Duis aliquam, ipsum a mattis cursus, dui magna tincidunt ligula, ac congue lorem ligula et quam. Donec vel porta mi. Morbi egestas vel metus nec commodo. Phasellus lacus lectus, fermentum sed tincidunt feugiat, condimentum a tellus. Aenean condimentum sit amet sapien eu imperdiet. Proin a sapien venenatis, feugiat enim nec, dapibus metus. Cras sem est, semper id dapibus non, ornare sed urna. Suspendisse potenti. In facilisis orci ac nisl volutpat, ut auctor sem fringilla. Duis id fermentum velit. Aenean blandit commodo commodo. Donec gravida orci non fermentum suscipit. Etiam id dictum ex, egestas consequat mi. Proin vulputate tempus augue a sollicitudin. Quisque purus justo, pulvinar non purus at, tincidunt dictum magna. Fusce faucibus at tortor malesuada consectetur. Curabitur semper sem sed justo lacinia dictum. Nunc euismod blandit sapien quis viverra. Quisque sagittis mauris eu magna fermentum pellentesque. Etiam pretium eros ut urna lacinia, at pellentesque lacus tempor. Maecenas vel laoreet eros, sed porta dui. Pellentesque sit amet lacus eget velit commodo commodo sit amet ut erat. Integer vel mollis dui, id dignissim risus. Pellentesque quis pulvinar tortor. Praesent venenatis porta libero, in posuere est tempus fringilla. Suspendisse gravida magna lectus, ac cursus erat feugiat eu. Sed feugiat ac elit molestie scelerisque. Quisque sit amet neque gravida, tincidunt velit quis, malesuada magna. Pellentesque ullamcorper felis at eros placerat, et tempor nisi lacinia. Maecenas posuere nibh eu pharetra faucibus. Aenean eu dolor ut tellus rutrum egestas auctor vitae ligula. Sed vitae erat dui. Suspendisse in lectus at ante vestibulum fermentum. Vestibulum pellentesque lectus id felis suscipit ornare. Sed erat enim, porta eu tempus rhoncus, luctus sit amet lorem. Phasellus porta ipsum vel dictum tempus. Maecenas ut semper tortor, ac facilisis ipsum. Cras odio tortor, eleifend id accumsan sit amet, imperdiet vitae erat. Nam viverra felis eu elit elementum, sit amet tempus mi ullamcorper. Nunc malesuada elementum dignissim. Nam eu faucibus libero, sed tempor dolor. Phasellus fringilla enim metus, non hendrerit lacus faucibus et. Duis sed pharetra dui, ut gravida tellus. Quisque tempor rutrum metus, nec vulputate tellus molestie sed. Sed sit amet nisl porttitor, hendrerit orci non, ultrices sem. Vestibulum maximus diam vel egestas hendrerit. Quisque pharetra diam sapien, eu viverra enim dictum ac. Morbi turpis orci, placerat a interdum id, finibus quis elit. Mauris feugiat semper nisi, id volutpat odio sagittis id. Donec pharetra blandit sem id ultrices. Cras vehicula venenatis ultrices. Sed mi erat, vestibulum non nunc at, egestas tempor sapien. Vestibulum dapibus blandit nisl eget pulvinar. Nunc aliquet ac lacus vel varius. Curabitur vitae sapien vitae diam porta scelerisque. Nam congue et libero nec venenatis. Quisque interdum tellus a varius rhoncus. Maecenas pretium feugiat ipsum, sit amet varius nibh aliquet ut. Sed id maximus velit. Phasellus velit urna, imperdiet sed mauris non, iaculis congue mi.</p>
         </section>
     </div>
 </body>
