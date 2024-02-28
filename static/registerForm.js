@@ -6,11 +6,17 @@ $(document).ready(function() {
         var login = $('#login').val();
         var password = $('#password').val();
         var password1 = $('#password1').val();
+        // var agree = $('TOS').val();
 
         if (password !== password1) {
             $('#message').text("Пароли не совпадают. Пожалуйста, введите одинаковые пароли.");
             return; // Остановка отправки запроса
         }
+        // alert(agree);
+        // if (!agree){
+        //     $('#message').text("Увы, Вы не можете зарегистрироваться, не согласившись с нашими словиями использования!");
+        //     return;
+        // }
 
         var formData = {
             username: username,
@@ -22,7 +28,7 @@ $(document).ready(function() {
         if (Object.values(formData).every(val => val.trim() !== '')) {
             $.ajax({
                 type: 'POST',
-                url: '/API/register',
+                url: '/AJAX/API/register',
                 data: JSON.stringify(formData), // Отправка данных в формате JSON
                 contentType: 'application/json',
                 success: function(response) {

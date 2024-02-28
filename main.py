@@ -2,6 +2,9 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import JSONResponse
+from starlette.requests import Request
+from starlette.responses import Response
+from starlette.status import HTTP_418_IM_A_TEAPOT, HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
 
 import DB
 import Data
@@ -11,6 +14,20 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+
+@app.middleware("http")
+async def validate_request(request: Request, call_next):
+    if request.url.path.startswith("/AJAX"):
+        origin = request.headers.get("origin")
+        user_agent = request.headers.get("user-agent")
+
+        if origin not in Data.DOMAINS : #or "Mozilla" not in user_agent
+            print(origin)
+            raise HTTPException(status_code=418)
+            # return {"success": False, "message": f"Ошибка при регистрации: вы чайник!"}
+
+    response = await call_next(request)
+    return response
 
 @app.get("/")
 async def read_root(request: Request):
@@ -25,7 +42,7 @@ async def read_register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
 
 
-@app.post("/API/register")
+@app.post("/AJAX/API/register")
 async def register_user(request: Request):
     data = await request.json()
 
