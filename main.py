@@ -39,21 +39,20 @@ async def register_user(request: Request):
 
     # Проверка и обработка данных для регистрации пользователя
     # ...
-    hashed_password = Utils.hash_SHA3_str(password)
-    hashed_password1 = Utils.hash_SHA3_str(password1)
+    hashed_password = Utils.hash_password(password)
+    hashed_password1 = Utils.hash_password(password1)
 
     registration_successful = False
     message=""
     if hashed_password==hashed_password1:
-
         doc = DB.db.users.find_one({"login": login})
         if not doc:
             DB.addUser(username, login, hashed_password)
             registration_successful = True
         else:
             message="Пользователь с таким логином уже существует"
-
-
+    else:
+        message="Пароли не совпадают"
 
 
     # Возвращение результата регистрации
