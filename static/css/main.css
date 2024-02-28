@@ -116,17 +116,17 @@ nav {
     float: right;
 }
 
-nav li {
+nav ul {
     display: flex;
     padding: 0;
     margin: 0;
 }
 
-nav li ul {
+nav ul li {
     list-style: none;
 }
 
-nav li ul a {
+nav ul li a {
     display: block;
     color: azure;
     text-transform: uppercase;
@@ -135,7 +135,7 @@ nav li ul a {
     text-decoration: none;
 }
 
-nav li ul a:hover {
+nav ul li a:hover {
     color: lightcyan;
 
 }
