@@ -135,7 +135,7 @@ nav ul li a {
     text-decoration: none;
 }
 
-nav ul li a:hover {
+nav li ul a:hover {
     color: lightcyan;
 
 }
@@ -153,7 +153,8 @@ nav ul li ul{
 }
 nav ul li:hover ul{
     opacity: 1;
-    display: block;
+    visibility: visible;
+    transform: translateY(0px);
 }
 nav ul li ul a{
     padding: 10px;
