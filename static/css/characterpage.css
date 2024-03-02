@@ -1,0 +1,61 @@
+.character-field {
+    text-align: center;
+    padding: 5px;
+    margin: 10px 30px 10px 30px;
+    background-color: #2626264c;
+    border-radius: 5px;
+    border-bottom: 3px solid white;
+    border-top: 2px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    box-shadow: -1px 0px 15px 0px rgba(34, 60, 80, 0.57);
+}
+
+.character-name {
+    border-color: rgb(252, 192, 71);
+    box-shadow: -1px 0px 15px 0px rgba(252, 192, 71, 0.57);
+}
+
+.character-shortened {
+    border-color: rgb(174, 252, 71);
+    box-shadow: -1px 0px 15px 0px rgba(174, 252, 71, 0.57);
+}
+
+.character-bodystats {
+    border-color: rgb(250, 130, 224);
+    box-shadow: -1px 0px 15px 0px rgba(250, 130, 224, 0.57);
+}
+
+.character-bio {
+    border-color: #fae082;
+    box-shadow: -1px 0px 15px 0px rgba(250, 224, 130, 0.57);
+}
+
+.character-abilities {
+    border-color: #773df5;
+    box-shadow: -1px 0px 15px 0px rgba(119, 61, 245, 0.57);
+}
+
+.character-weaknesses {
+    border-color: #91b5c9;
+    box-shadow: -1px 0px 15px 0px rgba(145, 181, 201, 0.57);
+}
+
+.character-appearances {
+    border-color: #ccf55b;
+    box-shadow: -1px 0px 15px 0px rgba(204, 245, 91, 0.57);
+}
+
+.character-art {
+    border-color: #ccf55b;
+    box-shadow: -1px 0px 15px 0px rgba(204, 245, 91, 0.57);
+}
+
+.character-inventory {
+    border-color: #56fcd6;
+    box-shadow: -1px 0px 15px 0px rgba(86, 252, 214, 0.57);
+}
+
+.character-field-title {
+    border-bottom: 2px dotted whitesmoke;
+}

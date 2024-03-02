@@ -8,6 +8,8 @@ from private import Core
 
 client = MongoClient(Core.DB_ADDRESS)
 db = client[Core.DB_NAME]
+db_rtb=client[Core.DB_RTB_NAME]
+
 
 class Schemes(enum.Enum):
     blank = 0

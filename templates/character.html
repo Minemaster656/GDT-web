@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="{{ name }}" property="og:title" />
+    <meta content="{{ shortened }}" property="og:description" />
+    <meta content="" property="og:url" />
+    <!-- <meta content="#1f445e" property="og:color"/> -->
+    <meta content="{{ art }}" property="og:image" />
+    {{ head | safe}}
+    <link rel="stylesheet" href="/static/css/characterpage.css">
+    <title>{{ name }}</title>
+</head>
+
+<body>
+
+    <div class="page">
+        {{ header | safe }}
+        <div class="space" style="padding: 100px;"></div>
+        <div class="character-name character-field">
+            <h1>{{ name }}</h1>
+            <p>Принадледит пользователю с ID {{ owner }}</p>
+        </div>
+        <div class="character-shortened character-field">
+            <h1 class="character-field-title">Если вкратце...</h1>
+            {{ shortened | safe}}
+        </div>
+        <div class="character-bodystats character-field">
+            <h1 class="character-field-title">Рост, вес, мир, возраст...</h1>
+            {{ bodystats | safe }}<p>{{ age }} лет.</p>
+        </div>
+        <div class="character-bio character-field">
+            <h1 class="character-field-title">Биография</h1>
+            {{bio | safe }}
+        </div>
+        
+        <div class="character-abilities character-field">
+            <h1 class="character-field-title">Способности</h1>
+            {{ abilities | safe }}
+        </div>
+        <div class="character-weaknesses character-field">
+            <h1 class="character-field-title">Слабости</h1>
+            {{ weaknesses | safe }}
+        </div>
+        <div class="character-inventory character-field">
+            <h1 class="character-field-title">Инвентарь</h1>
+            {{ inventory | safe }}
+        </div>
+        <div class="character-appearances character-field">
+            <h1 class="character-field-title">Внешность</h1>
+            {{ appearances | safe }}
+        </div>
+        
+
+        <div class="character-art character-field">
+            <h1 class="character-field-title">Арт</h1>
+            <img src="{{ art }}" alt="арт">
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

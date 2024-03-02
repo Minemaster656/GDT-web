@@ -28,3 +28,9 @@ HEADER='''
                 </ul>
             </nav>
         </div>'''
+
+
+
+
+HEAD_CONTENT = '''
+<link rel="stylesheet" href="/static/css/main.css">'''

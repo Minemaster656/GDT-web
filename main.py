@@ -22,7 +22,7 @@ async def validate_request(request: Request, call_next):
         origin = request.headers.get("origin")
         user_agent = request.headers.get("user-agent")
 
-        if origin not in Data.DOMAINS : #or "Mozilla" not in user_agent
+        if origin not in Data.DOMAINS:  # or "Mozilla" not in user_agent
             print(origin)
             raise HTTPException(status_code=418)
             # return {"success": False, "message": f"Ошибка при регистрации: вы чайник!"}
@@ -30,17 +30,59 @@ async def validate_request(request: Request, call_next):
     response = await call_next(request)
     return response
 
+
 @app.get("/")
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "header":TEMPLATES.HEADER})
+    return templates.TemplateResponse("index.html",
+                                      {"request": request, "header": TEMPLATES.HEADER, "head": TEMPLATES.HEAD_CONTENT})
+
 
 @app.get("/items/{item_id}")
 async def read_item(request: Request, item_id: int):
     item = DB.db.find_one({"_id": item_id})
     return templates.TemplateResponse("item.html", {"request": request, "item": item})
+
+
 @app.get("/register")
 async def read_register(request: Request):
     return templates.TemplateResponse("register.html", {"request": request})
+
+
+@app.get("/character/{id}")
+async def read_character_by_id(request: Request, id: str):
+    doc = DB.db_rtb.characters.find_one({"id": id})
+    # print(doc)
+    def strToHTMLstr(s):
+        s = s.replace("\n", "<br>")
+        s = s.replace("\\n", "<br>")
+        s = s.replace("\\\\n", "<br>")
+        s = Utils.str_to_HTML(s)
+        return s
+
+    if doc:
+        print(doc)
+        return templates.TemplateResponse("character.html", {"request": request,
+                                                             "header": TEMPLATES.HEADER,
+                                                             "head": TEMPLATES.HEAD_CONTENT,
+                                                             "character": doc,
+                                                             "art": doc["art"],
+                                                             "name": doc["name"],
+                                                             "shortened": strToHTMLstr(doc["shortened"]),
+                                                             "bio": strToHTMLstr(doc["bio"]),
+                                                             "bodystats": strToHTMLstr(doc["bodystats"]),
+                                                             "age": doc["age"],
+                                                             "abilities": strToHTMLstr(doc["abilities"]),
+                                                             "weaknesses": strToHTMLstr(doc["weaknesses"]),
+                                                             "appearances": strToHTMLstr(doc["appearances"]),
+                                                             "inventory": strToHTMLstr(doc["inventory"]),
+                                                             "owner": doc["owner"]
+                                                             })
+    else:
+        return templates.TemplateResponse("character_not_found.html", {"request": request,
+                                                                       "header": TEMPLATES.HEADER,
+                                                                       "head": TEMPLATES.HEAD_CONTENT,
+                                                                       "id": id
+                                                                       })
 
 
 @app.post("/AJAX/API/register")
@@ -61,18 +103,15 @@ async def register_user(request: Request):
     hashed_password1 = Utils.hash_SHA3_str(password1)
 
     registration_successful = False
-    message=""
-    if hashed_password==hashed_password1:
+    message = ""
+    if hashed_password == hashed_password1:
 
         doc = DB.db.users.find_one({"login": login})
         if not doc:
             DB.addUser(username, login, hashed_password)
             registration_successful = True
         else:
-            message="Пользователь с таким логином уже существует"
-
-
-
+            message = "Пользователь с таким логином уже существует"
 
     # Возвращение результата регистрации
     if registration_successful:
@@ -80,6 +119,8 @@ async def register_user(request: Request):
     else:
         return {"success": False, "message": f"Ошибка при регистрации: {message}"}
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="127.0.0.1", port=Data.PORT)
