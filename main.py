@@ -111,7 +111,10 @@ async def register_user(request: Request):
             DB.addUser(username, login, hashed_password)
             registration_successful = True
         else:
-            message = "Пользователь с таким логином уже существует"
+            message="Пользователь с таким логином уже существует"
+    else:
+        message="Пароли не совпадают"
+
 
     # Возвращение результата регистрации
     if registration_successful:
