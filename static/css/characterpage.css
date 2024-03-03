@@ -59,3 +59,7 @@
 .character-field-title {
     border-bottom: 2px dotted whitesmoke;
 }
+.character-id{
+    border-color: #f7785c;
+    box-shadow: -1px 0px 15px 0px rgba(247, 120, 92, 0.57);
+}

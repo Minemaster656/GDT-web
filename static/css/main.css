@@ -9,9 +9,12 @@ html {
     padding-top: 0;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
     border: 2px solid gray;
     border-radius: 3px;
+    background-color: #aeb2b591;
+
 }
 
 body {
@@ -80,8 +83,15 @@ input:not([type="checkbox"]) {
     width: 70%;
 }
 
-input:required {
+input:required,
+textarea:required {
     border-color: lightcoral;
+}
+
+textarea {
+    background-color: #aeb2b591;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
 
 section {
@@ -186,4 +196,3 @@ a:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-

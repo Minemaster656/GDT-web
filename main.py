@@ -111,12 +111,24 @@ async def read_character_by_id(request: Request, id: str):
                                                              "owner": doc["owner"]
                                                              })
     else:
-        return templates.TemplateResponse("character_not_found.html", {"request": request,
+        # return templates.TemplateResponse("character_not_found.html", {"request": request,
+        #                                                                "header": TEMPLATES.HEADER,
+        #                                                                "head": TEMPLATES.HEAD_CONTENT,
+        #                                                                "id": id
+        #                                                                })
+        return templates.TemplateResponse("c404.html", {"request": request,
                                                                        "header": TEMPLATES.HEADER,
                                                                        "head": TEMPLATES.HEAD_CONTENT,
                                                                        "id": id
                                                                        })
 
+
+@app.get("/characters/register")
+async def read_characters_register(request: Request):
+    return templates.TemplateResponse("character_register.html", {"request": request,
+                                                                       "header": TEMPLATES.HEADER,
+                                                                       "head": TEMPLATES.HEAD_CONTENT,
+                                                                  })
 
 @app.post("/AJAX/API/register")
 async def register_user(request: Request):

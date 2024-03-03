@@ -1,10 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ head | safe }}
+    <title>Регистрация персонажа</title>
 
+    <meta content="регистрация персонажа" property="og:title" />
+    <meta content="Форма для регистрации персонажа и отправки на проверку. Дальнейший разбор перейдёт в Discord."
+        property="og:description" />
+    <!-- <meta content="" property="og:url" />
+
+    <meta content="" property="og:image" /> -->
+    <link rel="stylesheet" href="/static/css/characterpage.css">
+    <style>
+        textarea {
+            width: 70%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        {{ header | safe }}
+        <div class="space" style="padding: 50px;"></div>
+        <section>
+            <form action="/AJAX/regchar">
+                <div class="character-name character-field">
+                    <h1>Имя персонажа</h1>
+                    <input type="text" id="name" class="generic-textinput" style="width: 300px;" maxlength="64"
+                        required>
+                </div>
+
+                <div class="character-bodystats character-field">
+                    <div class="character-field-title">
+                        <h1>Статы персонажа</h1>
+                        <p>Рост, вес, телосложение, родной мир, какие-то дополнительные характеристики, если вы считаете
+                            нужным их добавить сюда</p>
+                    </div>
+                    <textarea maxlength="16384" name="bodystats" id="bodystats" cols="30" rows="10" required></textarea>
+                    <p>Возраст (ЧИСЛО). Если он неизвестен или не может быть определён, впишите -1</p>
+                    <input type="number" id="age" style="width: 100px;" required>
+
+                </div>
+                <!-- <div class="character-bodystats character-field">
+                    <h1 class="character-field-title">Возраст персонажа (число)</h1>
+
+                </div> -->
+                <div class="character-bio character-field">
+                    <h1 class="character-field-title">Биография</h1>
+                    <textarea maxlength="16384" name="bio" id="bio" cols="30" rows="10" required></textarea>
+                </div>
+
+                <div class="character-abilities character-field">
+                    <h1 class="character-field-title">Способности</h1>
+                    <textarea maxlength="16384" name="abilities" id="abilities" cols="30" rows="10" required></textarea>
+
+                </div>
+                <div class="character-weaknesses character-field">
+                    <h1 class="character-field-title">Слабости</h1>
+                    <textarea maxlength="16384" name="weaknesses" id="weaknesses" cols="30" rows="10"
+                        required></textarea>
+
+                </div>
+                <div class="character-inventory character-field">
+                    <h1 class="character-field-title">Инвентарь</h1>
+                    <textarea maxlength="16384" name="inventory" id="inventory" cols="30" rows="10" required></textarea>
+
+                </div>
+                <div class="character-appearances character-field">
+                    <h1 class="character-field-title">Описание внешности персонажа</h1>
+                    <textarea maxlength="16384" name="appearances" id="appearances" cols="30" rows="10"
+                        required></textarea>
+
+                </div>
+
+
+                <div class="character-art character-field">
+                    <div class="character-field-title">
+                        <h1>Ссылка на арт</h1>
+                        <p>Если ссылка не ведёт на файл, она будет отклонена вместе с анкетой. Вы можете проверить,
+                            рабочая ли ссылка, скинув её в личку какому-нибудь боту в Discord. Если она заменилась на
+                            изображение - всё работает. Так жде что бы получить её, можно скинуть изображение в личку
+                            какому-нибудь боту и скопировать ссылку на изображение.</p>
+                    </div>
+
+                    <input type="url" id="art" value="https://glitchdev.ru/static/assets/img/unknown.png" required>
+
+                </div>
+                <div class="character-shortened character-field">
+                    <h1 class="character-field-title">Вкратце о вашем персонаже / дополнительные данные</h1>
+                    <textarea maxlength="16384" name="shortened" id="shortened" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="character-id character-field">
+                    <div class="character-field-title">
+                        <h1>ID персонажа</h1>
+                        <p>ТОЛЬКО английские буквы, цифры, нижние подчёркивания, точки и тире (-) (минусы)</p>
+                        <p>ID персонажа, можно на основе вашего ника и/или имения персонажа и/или краткого описания
+                            персонажа</p>
+                        <p>Примеры ID:<br>
+                            <a href="/character/jdh">jdh</a> от имени Джодах,<br>
+                            <a href="/character/erinshaw">erinshaw</a> от имени Erin Shaw,<br>
+                            <a href="/character/whilliam_hitler">whilliam_hitler</a> от имени и краткого описания
+                            персонажа (касательно этого, рекомендуем прочитать <a href="/TOS">наши условия
+                                использования</a>, если они на этот момент уже опубликованы),<br>
+                            <a href="/character/micha_clown">micha_clown</a> от имени ника и характера владельца
+                            персонажа.
+
+                        </p>
+
+                    </div>
+                    <input type="text" id="id" pattern="[a-zA-Z\-\_\.0-9]+" minlength="3" maxlength="32" required>
+
+                </div>
+                <div class="character-id character-field">
+                    <div class="character-field-title">
+                        <h1>Ваши данные для привязки персонажа</h1>
+                    </div>
+                    <p>Ваш ID</p>
+                    <input type="number" id="owner" required>
+                    <p>Действительный токен доступа</p>
+                    <input type="password" id="token" required>
+                    <p>Токен доступа можно получить с помощью команды <strong>!!токен</strong> в <a
+                            href="https://discord.com/api/oauth2/authorize?client_id=1126887522690142359&permissions=8&scope=bot">Каком-то
+                            боте (Discord)</a>, например на <a href="https://discord.gg/EfUHDkeSH9">нашем РП-сервере
+                            АТК</a>. ID же можно получить с помощью режима разработчика или же той же командой.</p>
+
+                </div>
+                <div class="character-id character-field">
+                    <input type="submit" value="Отправить на проверку" id="submit"
+                        style="width: 70%; height: 100px; margin: 30px auto; color: azure; font-size: 2em; font-family: Arial, Helvetica, sans-serif;">
+                </div>
+            </form>
+        </section>
+    </div>
 </body>
+
 </html>
