@@ -41,7 +41,40 @@ async def read_root(request: Request):
 async def read_item(request: Request, item_id: int):
     item = DB.db.find_one({"_id": item_id})
     return templates.TemplateResponse("item.html", {"request": request, "item": item})
+@app.get("/user/{username}")
+async def read_user(request: Request, username: str):
+    doc = DB.db_rtb.users.find_one({"username": username})
+    if doc:
+        doc = DB.schema(doc, DB.Schemes.RTB_user)
+        def makeActivityHistory(history):
+            return str(history)
+        print("#"+(str(hex(doc["color"]))[2:]))
+        return templates.TemplateResponse("user.html", {"request": request,
+                                                        "header": TEMPLATES.HEADER, "head": TEMPLATES.HEAD_CONTENT,
+                                                        "username":username,
+                                                        "about":doc["about"],
+                                                        # "avatar":doc["avatar"],
+                                                        "userid":doc["userid"],
+                                                        "age":doc["age"],
+                                                        "timezone":doc["timezone"],
+                                                        "color":"#"+(str(hex(doc["color"]))[2:]) if doc["color"] else "#5865F2", "color_glow":"#"+(str(hex(doc["color"]))[2:])+"a4" if doc["color"] else "#5865F2a4",
+                                                        "karma":doc["karma"],
+                                                        "luck":doc["luck"],
+                                                        "permissions":doc["permissions"],
+                                                        "money":doc["money"],
+                                                        "money_bank":doc["money_bank"],
+                                                        "xp":doc["xp"],
+                                                        "banned":doc["banned"],
+                                                        "autoresponder": 'Вкл.' if doc["autoresponder"] else 'Выкл.',
+                                                        "autoresponder-inactive":doc["autoresponder-inactive"],
+                                                        "autoresponder-offline":doc["autoresponder-offline"],
+                                                        "autoresponder-disturb":doc["autoresponder-disturb"],
+                                                        "premium_end":doc["premium_end"],
 
+                                                        "activity_changes":makeActivityHistory(doc["activity_changes"]),})
+    else:
+        return templates.TemplateResponse("c404.html", {"request": request,
+                                                        "header": TEMPLATES.HEADER, "head": TEMPLATES.HEAD_CONTENT})
 
 @app.get("/register")
 async def read_register(request: Request):

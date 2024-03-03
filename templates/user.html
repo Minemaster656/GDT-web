@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="{{ username }}" property="og:title" />
+    <meta content="{{ about }}" property="og:description" />
+    <meta content="" property="og:url" />
+    <!-- <meta content="#1f445e" property="og:color"/> -->
+    <!-- <meta content="{{ avatar }}" property="og:image" /> -->
+    <link rel="stylesheet" href="/static/css/userpage.css">
+    {{ head | safe}}
+    <title>{{ name }}</title>
+    <style>
+        .user-page {
+            text-align: center;
+            padding: 5px;
+            margin: 10px 30px 10px 30px;
+            background-color: #2626264c;
+            border-radius: 5px;
+
+            border: 3px solid {{ color}};
+            border-left: 5px solid {{ color }};
+            box-shadow: -1px 0px 15px 0px {{ color_glow }};
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        {{ header | safe }}
+        <div class="space" style="padding: 100px;"></div>
+
+        <div class="user-page">
+
+        </div>
+    </div>
+</body>
+
+</html>

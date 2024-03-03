@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="404" property="og:title" />
+    <meta content="Контент не найден!" property="og:description" />
+    <meta content="" property="og:url" />
+    <!-- <meta content="#1f445e" property="og:color"/> -->
+    <meta content="/static/assets/img/404.png" property="og:image" />
+    {{ head | safe}}
+    <title>{{ name }}</title>
+</head>
+<body>
+    <div class="page">
+        
+        {{ header | safe }}
+        <div class="space" style="padding: 50px;"></div>
+        <hr>
+        <div class="e404" style="text-align: center; padding: 50px; margin: auto;">
+            <div class="e404-img">
+                <img src="/static/assets/img/404.png" alt="404">
+            </div>
+            <div class="e404-msg" style="margin-top: -200px;">
+                <h1>Контент не найден!</h1>
+            </div>
+        </div>
+        <hr>
+    </div>
+</body>
+</html>

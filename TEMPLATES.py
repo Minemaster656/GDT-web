@@ -33,4 +33,5 @@ HEADER='''
 
 
 HEAD_CONTENT = '''
-<link rel="stylesheet" href="/static/css/main.css">'''
+<link rel="stylesheet" href="/static/css/main.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script><script>SmoothScroll({animationTime : 800,stepSize : 75,accelerationDelta : 30,accelerationMax : 2,keyboardSupport : true,arrowScroll : 50,pulseAlgorithm : true,pulseScale : 4,pulseNormalize : 1,touchpadSupport : true,})</script>'''

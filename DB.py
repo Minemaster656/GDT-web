@@ -14,7 +14,7 @@ db_rtb=client[Core.DB_RTB_NAME]
 class Schemes(enum.Enum):
     blank = 0
     user = 1
-
+    RTB_user = 2
 
 def schema(document, scheme):
     """
@@ -33,6 +33,14 @@ def schema(document, scheme):
             "login": None,
             "password": None
         }
+    if scheme == Schemes.RTB_user:
+        fields = {"userid": None, "username": " ", "about": None,
+                  "age": None, "timezone": None, "color": None,
+                  "karma": None, "luck": None, "permissions": None,
+                  "money": None, "money_bank": None, "xp": 0, 'banned': 0, 'autoresponder': False,
+                  "autoresponder-offline": None, "autoresponder-inactive": None, "autoresponder-disturb": None,
+                  "premium_end": 0, "total_reminders": 0, "inventory": {},
+                  "birthday_day": 0, "birthday_month": 0, "birthday_year": 0, "activity_changes": []}
 
     fields_check = {}
     if not document:
