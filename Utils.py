@@ -1,4 +1,5 @@
 import hashlib
+import random
 import re
 
 import markdown
@@ -55,3 +56,11 @@ def str_to_HTML(string):
 # ~~ffdfdfsg~~
 # ## h2
 # '''))
+def genToken(segments:int, segment_length:int)->str:
+    token = ''
+    symbols = "abcdefjhijklmnopqrstuvwxyz0123456789ABCDEFGHJIKLMNOPQRSTUVWXYZ"
+    for i in range(segments):
+        token += ''.join([str(random.choice(symbols)) for _ in range(segment_length)])
+        token+="-"
+    token=token[:-1]
+    return token

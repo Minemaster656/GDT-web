@@ -5,16 +5,17 @@ from pymongo import MongoClient
 import Utils
 from private import Core
 
-
 client = MongoClient(Core.DB_ADDRESS)
 db = client[Core.DB_NAME]
-db_rtb=client[Core.DB_RTB_NAME]
+db_rtb = client[Core.DB_RTB_NAME]
 
 
 class Schemes(enum.Enum):
     blank = 0
     user = 1
     RTB_user = 2
+    access_token = 3
+
 
 def schema(document, scheme):
     """
@@ -28,7 +29,7 @@ def schema(document, scheme):
     if scheme == Schemes.blank:
         fields = {"field": None}
     if scheme == Schemes.user:
-        fields={
+        fields = {
             "username": None,
             "login": None,
             "password": None
@@ -41,6 +42,8 @@ def schema(document, scheme):
                   "autoresponder-offline": None, "autoresponder-inactive": None, "autoresponder-disturb": None,
                   "premium_end": 0, "total_reminders": 0, "inventory": {},
                   "birthday_day": 0, "birthday_month": 0, "birthday_year": 0, "activity_changes": []}
+    if scheme == Schemes.access_token:
+        fields = {"token": "", "permissions": {}}
 
     fields_check = {}
     if not document:
@@ -55,6 +58,8 @@ def schema(document, scheme):
             document[k] = fields[k]
             fields_check[k] = True
     return document
+
+
 def addUser(username, login, password):
     """
     Adds a new user to the database.
@@ -70,3 +75,26 @@ def addUser(username, login, password):
     doc = db.users.find_one({"login": login})
     if not doc:
         db.users.insert_one(schema({"username": username, "login": login, "password": password}, Schemes.user))
+
+
+def getRTBUser(name=None, id=None):
+    doc = None
+    if name:
+        doc = db_rtb.users.find_one({"username": name})
+    elif id:
+        doc = db_rtb.users.find_one({"userid": id})
+
+    if doc:
+        return schema(doc, Schemes.RTB_user)
+    else:
+        return None
+
+
+def maskDoc(mask: dict, source: dict):
+    doc = {}
+    for k in mask.keys():
+        if k in source.keys():
+            doc[k] = source[k]
+        else:
+            doc[k] = mask[k]
+    return doc
